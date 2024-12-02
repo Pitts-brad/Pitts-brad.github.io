@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fast Food Web</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: yellow;
+            color: #333;
+        }
+
+        header {
+            background-color: yellowgreen;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .searchbar {
+            width: 80%;
+            margin: 20px auto;
+            display: block;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        main {
+            padding: 20px;
+            text-align: center;
+        }
+
+        section.category {
+            margin: 40px 0;
+        }
+
+        section.category h2 {
+            margin-bottom: 20px;
+            color: #ff5722;
+            text-transform: uppercase;
+        }
+
+        .product-list {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .product {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            width: 200px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .product img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .product h3 {
+            margin: 10px 0;
+        }
+
+        .product .price {
+            font-weight: bold;
+            color: #ff5722;
+        }
+
+        .product button {
+            background-color: purple;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .product button:hover {
+            background-color: #e64a19;
+        }
+
+        .view-cart {
+            background-color: #ff5722;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            margin: 20px auto;
+            display: block;
+        }
+
+        .view-cart:hover {
+            background-color: #e64a19;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 400px;
+            text-align: left;
+        }
+
+        .modal-content h2 {
+            margin-top: 0;
+        }
+
+        .modal-content ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .modal-content .close-modal {
+            background-color: #ff5722;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home">
+            <h1><em>Welcome to Fast Food Web</em></h1>
+            <p>Your favorite meals at affordable prices!</p>
+            <input type="text" id="searchbar" class="searchbar" placeholder="Search products">
+        </section>
+
+        <section id="products">
+            <h2>Our Products</h2>
+
+            <section class="category" id="pizza-category">
+                <h2>Pizza</h2>
+                <div class="product-list">
+                    <div class="product">
+                        <img src="C:\Users\admin\OneDrive\Pictures\Saved Pictures\Eq_it-na_pizza-margherita_sep2005_sml.jpg" alt="Pizza">
+                        <h3>Margherita Pizza</h3>
+                        <p class="price">Ksh. 700</p>
+                        <button onclick="addToCart('Margherita Pizza', 700)">Add to Cart</button>
+                    </div>
+                    <div class="product">
+                        <img src="C:\Users\admin\OneDrive\Pictures\Saved Pictures\bbq chicken pizza.jpeg" alt="Pizza">
+                        <h3>BBQ Chicken Pizza</h3>
+                        <p class="price">Ksh. 850</p>
+                        <button onclick="addToCart('BBQ Chicken Pizza', 850)">Add to Cart</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="category" id="burgers-category">
+                <h2>Burgers</h2>
+                <div class="product-list">
+                    <div class="product">
+                        <img src="C:\Users\admin\OneDrive\Pictures\Saved Pictures\Beef-Burgers-083.jpg" alt="Burger">
+                        <h3>Classic Beef Burger</h3>
+                        <p class="price">Ksh. 900</p>
+                        <button onclick="addToCart('Classic Beef Burger', 900)">Add to Cart</button>
+                    </div>
+                    <div class="product">
+                        <img src="C:\Users\admin\OneDrive\Pictures\Saved Pictures\cheese burger.webp" alt="Burger">
+                        <h3>Cheese Burger</h3>
+                        <p class="price">Ksh. 1000</p>
+                        <button onclick="addToCart('Cheese Burger', 1000)">Add to Cart</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="category" id="fries-category">
+                <h2>Fries</h2>
+                <div class="product-list">
+                    <div class="product">
+                        <img src="C:\Users\admin\OneDrive\Pictures\Saved Pictures\chips.jpeg" alt="Chips">
+                        <h3>Chips</h3>
+                        <p class="price">Ksh. 100</p>
+                        <button onclick="addToCart('Chips', 100)">Add to Cart</button>
+                    </div>
+                    <div class="product">
+                        <img src="C:\Users\admin\OneDrive\Pictures\Saved Pictures\fries masala.jpeg" alt="Chips Masala">
+                        <h3>Chips Masala</h3>
+                        <p class="price">Ksh. 150</p>
+                        <button onclick="addToCart('Chips Masala', 150)">Add to Cart</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="category" id="drinks-category">
+                <h2>Drinks</h2>
+                <div class="product-list">
+                    <div class="product">
+                        <img src="C:\Users\admin\OneDrive\Pictures\Saved Pictures\Greenspoon-munite-maid-tropical-1-of-1.jpg" alt="Minute Maid">
+                        <h3>Minute Maid</h3>
+                        <p class="price">Ksh. 100</p>
+                        <button onclick="addToCart('Minute Maid', 100)">Add to Cart</button>
+                    </div>
+                    <div class="product">
+                        <img src="C:\Users\admin\OneDrive\Pictures\Saved Pictures\coke.webp" alt="Coke">
+                        <h3>Coca-Cola</h3>
+                        <p class="price">Ksh. 150</p>
+                        <button onclick="addToCart('Coca-Cola', 150)">Add to Cart</button>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <button class="view-cart" onclick="openCartModal()">
+            <i class="fas fa-shopping-cart"></i> View Cart
+        </button>
+
+        <section id="About">
+            <h2>About Us</h2>
+            <p>Fast Food Web is a fast food chain located in Nairobi CBD. We are dedicated to serve you the best hot and deliciously prepared meals. We are dedicated and commited to provide the best dining experience for you and your family, whether it's a quick lunch with friends or a late night dinner with family, Fast Food Web gives you the best experience.</p>
+            <p>
+                <h1>Why choose us?</h1>
+                <ul>
+                    <li><strong>Ingredients</strong>: We source the finest ingredients to create meals you'll love.</li>
+                    <li><strong>Service</strong> We value your time and deliver quick, reliable service every time.</li>
+                    <li><strong>Prices</strong>: Great food shouldn't break the bank — enjoy delicious meals at unbeatable prices.</li>
+                    <li><strong>We're more than just a restaurant</strong>; we're a part of your community.</li>
+                </ul>
+            </p>
+            <p>Thank you for making Fast Food Web your go to spot for great meals. We are excited to serve you.</p>
+        </section>
+
+        <section id="Contact">
+            <h2><i class="fas fa-phone"></i> Contact Us</h2>
+            <p>Phone: <a href="tel:0712345678" style="color: goldenrod; text-decoration: none;">0712345678</a></p>
+            <p>Message: <a href="sms:0712345678" style="color: goldenrod; text-decoration: none;">0712345678</a></p>
+            <p>Email: <a href="mailto:contact@fastfoodweb.com" style="color: gold; text-decoration: none;">contact@fastfoodwebcom</a></p>
+        </section>
+    </main>
+
+    <div id="cart-modal" class="modal">
+        <div class="modal-content">
+            <h2>Shopping Cart</h2>
+            <ul id="cart-items"></ul>
+            <p><strong>Total:</strong> Ksh. <span id="total-price">0</span></p>
+            <button class="close-modal" onclick="closeCartModal()">Close</button>
+        </div>
+    </div>
+
+    <script>
+        let cart = [];
+        let totalPrice = 0;
+
+        function addToCart(productName, price) {
+            cart.push({ name: productName, price: price });
+            totalPrice += price;
+            alert(`${productName} added to the cart!`);
+        }
+
+        function openCartModal() {
+            const cartModal = document.getElementById('cart-modal');
+            const cartItems = document.getElementById('cart-items');
+            const total = document.getElementById('total-price');
+
+            cartItems.innerHTML = '';
+            cart.forEach((item) => {
+                const li = document.createElement('li');
+                li.textContent = `${item.name} - Ksh. ${item.price}`;
+                cartItems.appendChild(li);
+            });
+
+            total.textContent = totalPrice;
+            cartModal.style.display = 'flex';
+        }
+
+        function closeCartModal() {
+            const cartModal = document.getElementById('cart-modal');
+            cartModal.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
